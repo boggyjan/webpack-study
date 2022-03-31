@@ -7,12 +7,14 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
-  mode: 'development',
+  // 已在package script指定
+  // mode: 'development',
 
   entry: './src/index.js',
   // devtool: 'none',
 
   optimization: {
+    // tree shaking
     usedExports: true,
 
     splitChunks: {
@@ -38,6 +40,7 @@ export default {
         }
       }
     },
+
     // runtimeChunk: true,
     minimize: true,
     minimizer: [new TerserPlugin()]
@@ -66,6 +69,7 @@ export default {
   ],
 
   devServer: {
+    // hot module replacement
     hot: true,
     static: {
       directory: path.join(__dirname, 'dist'),
